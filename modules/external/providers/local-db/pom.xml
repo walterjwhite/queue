@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.walterjwhite.modules.queue.modules.external</groupId>
+        <artifactId>providers</artifactId>
+        <version>0.0.15-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.walterjwhite.modules.queue.modules.external.providers</groupId>
+    <artifactId>local-db</artifactId>
+    <version>0.0.15-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>queue - providers - local-db</name>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.walterjwhite.infrastructure.dependencies</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>0.0.15-SNAPSHOT</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.walterjwhite.infrastructure.datastore.modules</groupId>
+            <artifactId>google-guice-persist-criteria-builder</artifactId>
+            <version>0.0.15-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.walterjwhite.modules</groupId>
+		<artifactId>queue</artifactId>
+		<version>0.0.15-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.walterjwhite.modules.queue</groupId>
+	<artifactId>impl</artifactId>
+	<packaging>jar</packaging>
+	<name>queue - impl</name>
+	<description>
+		queue impl
+	</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.walterjwhite.modules.queue.api</groupId>
+			<artifactId>service</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.walterjwhite.modules.serialization.api</groupId>
+			<artifactId>service</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.walterjwhite.infrastructure.google-guice.modules</groupId>
+			<artifactId>guava-executor-service</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.walterjwhite.infrastructure.datastore.modules</groupId>
+			<artifactId>google-guice-persist-criteria-builder</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+		</dependency>
+
+        <dependency>
+            <groupId>com.walterjwhite.modules.encryption.api</groupId>
+            <artifactId>service</artifactId>
+            <version>0.0.15-SNAPSHOT</version>
+        </dependency>
+
+		<dependency>
+			<groupId>com.walterjwhite.infrastructure.google-guice.modules</groupId>
+			<artifactId>property-test</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.walterjwhite.infrastructure.dependencies</groupId>
+			<artifactId>p6spy</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.walterjwhite.infrastructure.dependencies</groupId>
+			<artifactId>hikari-jdbc-connection-pool</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.walterjwhite.infrastructure.dependencies</groupId>
+			<artifactId>hibernate-hikari</artifactId>
+			<version>0.0.15-SNAPSHOT</version>
+			<type>pom</type>
+            <scope>test</scope>
+		</dependency>
+    </dependencies>
+
+	<profiles>
+		<profile>
+			<id>postgres</id>
+
+			<dependencies>
+				<dependency>
+					<groupId>com.walterjwhite.infrastructure.dependencies</groupId>
+					<artifactId>postgresql</artifactId>
+					<version>0.0.15-SNAPSHOT</version>
+					<type>pom</type>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>h2</id>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<dependencies>
+				<dependency>
+					<groupId>com.walterjwhite.infrastructure.dependencies</groupId>
+					<artifactId>h2</artifactId>
+					<version>0.0.15-SNAPSHOT</version>
+					<type>pom</type>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>jackson-databind</id>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<dependencies>
+				<!-- TODO: specific module should be specified @ runtime -->
+				<dependency>
+					<groupId>com.walterjwhite.modules.serialization.modules</groupId>
+					<artifactId>jackson-databind</artifactId>
+					<version>0.0.15-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+</project>
