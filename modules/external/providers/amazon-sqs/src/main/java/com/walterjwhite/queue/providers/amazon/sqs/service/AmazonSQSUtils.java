@@ -1,8 +1,8 @@
 package com.walterjwhite.queue.providers.amazon.sqs.service;
 
 import com.amazonaws.services.sqs.AmazonSQS;
-import com.walterjwhite.job.api.enumeration.QueueType;
-import com.walterjwhite.job.api.model.Queue;
+import com.walterjwhite.queue.api.enumeration.QueueType;
+import com.walterjwhite.queue.api.model.Queue;
 
 public class AmazonSQSUtils {
   private AmazonSQSUtils() {}

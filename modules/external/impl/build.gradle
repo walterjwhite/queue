@@ -1,0 +1,5 @@
+group = 'com.walterjwhite.modules.queue.modules.external'
+description = 'queue - modules - external - impl'
+dependencies {
+  compile project(':infrastructure:datastore:api:service')
+}

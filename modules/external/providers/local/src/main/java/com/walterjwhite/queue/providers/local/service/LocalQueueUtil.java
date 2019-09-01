@@ -1,6 +1,6 @@
 package com.walterjwhite.queue.providers.local.service;
 
-import com.walterjwhite.job.api.model.Queue;
+import com.walterjwhite.queue.api.model.Queue;
 import java.io.File;
 
 public class LocalQueueUtil {

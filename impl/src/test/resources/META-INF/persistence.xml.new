@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+  <persistence-unit name="defaultJPAUnit">
+    <class>Job</class>
+    <class>JobExecution</class>
+    <class>JobExecutor</class>
+    <class>EntityJobExecutor</class>
+    <class>Queue</class>
+    <class>QueueMonitor</class>
+    <class>AbstractSchedule</class>
+    <class>SimpleSchedule</class>
+    <class>com.walterjwhite.queuedJob.impl.Message</class>
+    <class>com.walterjwhite.datastore.api.model.entity.AbstractEntity</class>
+    <class>com.walterjwhite.datastore.api.model.entity.AbstractNamedEntity</class>
+    <class>com.walterjwhite.datastore.api.model.entity.AbstractUUIDEntity</class>
+    <class>com.walterjwhite.datastore.api.model.entity.Tag</class>
+    <class>com.walterjwhite.datastore.api.model.entity.EntityContainerType</class>
+    <class>com.walterjwhite.datastore.api.model.entity.EntityReference</class>
+    <class>com.walterjwhite.datastore.api.model.entity.EntityType</class>
+    <properties>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.connection.driver_class" value="com.p6spy.engine.spy.P6SpyDriver"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+      <property name="hibernate.connection.url" value="jdbc:p6spy:h2:./db;DB_CLOSE_ON_EXIT=FALSE"/>
+      <!-- OS env property also did not affect this -->
+      <!--<property name="hibernate.connection.url" value="jdbc:p6spy:h2:./db/${DatabaseName}"/>-->
+      <!-- Postgres 10 -->
+      <!--
+            <property name="hibernate.connection.url" value="jdbc:p6spy:postgresql://localhost/remote?user=remote"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+            -->
+      <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
+      <property name="org.hibernate.flushMode" value="COMMIT"/>
+    </properties>
+  </persistence-unit>
+</persistence>

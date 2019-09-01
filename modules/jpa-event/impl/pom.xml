@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.walterjwhite.java.modules.queue.modules</groupId>
+    <artifactId>jpa-event</artifactId>
+    <version>0.0.15-SNAPSHOT</version>
+  </parent>
+  <groupId>com.walterjwhite.java.modules.queue.modules.jpa-event</groupId>
+  <artifactId>impl</artifactId>
+  <packaging>jar</packaging>
+  <name>queue - modules - jpa-event - impl</name>
+  <dependencies>
+    <!--<dependency>-->
+    <!--<groupId>com.walterjwhite.java.infrastructure.datastore.modules.jpa-event-listener</groupId>-->
+    <!--<artifactId>api</artifactId>-->
+    <!--<version>0.0.15-SNAPSHOT</version>-->
+    <!--</dependency>-->
+    <!--&lt;!&ndash; provider is still required &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>com.walterjwhite.java.infrastructure.datastore.modules.jpa-event-listener</groupId>-->
+    <!--<artifactId>impl</artifactId>-->
+    <!--<version>0.0.15-SNAPSHOT</version>-->
+    <!--<scope>runtime</scope>-->
+    <!--</dependency>-->
+  </dependencies>
+</project>

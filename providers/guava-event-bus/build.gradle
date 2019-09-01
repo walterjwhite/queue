@@ -1,0 +1,6 @@
+group = 'com.walterjwhite.infrastructure.google-guice.modules'
+description = 'google - guice - guava - event - bus'
+dependencies {
+  compile project(':infrastructure:dependencies:google-guava')
+  compile project(':infrastructure:datastore:modules:property')
+}

@@ -1,38 +1,31 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>com.walterjwhite.modules.queue.modules.external</groupId>
-        <artifactId>providers</artifactId>
-        <version>0.0.15-SNAPSHOT</version>
-    </parent>
-
-    <groupId>com.walterjwhite.modules.queue.modules.external.providers</groupId>
-    <artifactId>local</artifactId>
-    <packaging>jar</packaging>
-
-    <name>queue - providers - local</name>
-    
-    <dependencies>
-        <dependency>
-            <groupId>com.walterjwhite.modules.file.modules</groupId>
-            <artifactId>watcher</artifactId>
-            <version>0.0.15-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.walterjwhite.infrastructure.dependencies</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>0.0.15-SNAPSHOT</version>
-            <type>pom</type>
-        </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>com.walterjwhite.infrastructure.google-guice.modules</groupId>-->
-            <!--<artifactId>runtime-module-selection</artifactId>-->
-            <!--<version>0.0.15-SNAPSHOT</version>-->
-        <!--</dependency>-->
-    </dependencies>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.walterjwhite.java.modules.queue.modules.external</groupId>
+    <artifactId>providers</artifactId>
+    <version>0.0.15-SNAPSHOT</version>
+  </parent>
+  <groupId>com.walterjwhite.java.modules.queue.modules.external.providers</groupId>
+  <artifactId>local</artifactId>
+  <packaging>jar</packaging>
+  <name>queue - providers - local</name>
+  <dependencies>
+    <dependency>
+      <groupId>com.walterjwhite.java.modules.file.modules</groupId>
+      <artifactId>watcher</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.walterjwhite.java.dependencies</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
+      <type>pom</type>
+    </dependency>
+    <!--<dependency>-->
+    <!--<groupId>com.walterjwhite.java.infrastructure.google-guice.modules</groupId>-->
+    <!--<artifactId>runtime-module-selection</artifactId>-->
+    <!--<version>0.0.15-SNAPSHOT</version>-->
+    <!--</dependency>-->
+  </dependencies>
 </project>

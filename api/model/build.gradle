@@ -1,0 +1,5 @@
+group = 'com.walterjwhite.modules.queue.api'
+description = 'queue - API - model'
+dependencies {
+  compile project(':infrastructure:datastore:api:model')
+}

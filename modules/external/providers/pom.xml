@@ -1,65 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.walterjwhite.modules.queue.modules</groupId>
-		<artifactId>external</artifactId>
-		<version>0.0.15-SNAPSHOT</version>
-	</parent>
-
-	<groupId>com.walterjwhite.modules.queue.modules.external</groupId>
-	<artifactId>providers</artifactId>
-	<packaging>pom</packaging>
-	<name>queue - providers - Parent POM</name>
-	<description>
-		queue parent POM
-	</description>
-
-	<modules>
-		<module>amazon-sqs</module>
-
-		<module>google-cloud-pub-sub</module>
-
-		<module>local</module>
-		<module>local-db</module>
-	</modules>
-
-	<dependencies>
-		<dependency>
-			<groupId>com.walterjwhite.modules.queue.api</groupId>
-			<artifactId>service</artifactId>
-			<version>0.0.15-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.walterjwhite.modules.queue</groupId>
-			<artifactId>impl</artifactId>
-			<version>0.0.15-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.walterjwhite.modules.queue.modules.external</groupId>
-			<artifactId>api</artifactId>
-			<version>0.0.15-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.walterjwhite.modules.queue.modules.external</groupId>
-			<artifactId>impl</artifactId>
-			<version>0.0.15-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.walterjwhite.infrastructure.google-guice</groupId>
-			<artifactId>core</artifactId>
-			<version>0.0.15-SNAPSHOT</version>
-		</dependency>
-
-		<!--<dependency>-->
-			<!--<groupId>com.walterjwhite.infrastructure.dependencies</groupId>-->
-			<!--<artifactId>commons-io</artifactId>-->
-			<!--<version>0.1-SNAPSHOT</version>-->
-			<!--<type>pom</type>-->
-		<!--</dependency>-->
-	</dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.walterjwhite.java.modules.queue.modules</groupId>
+    <artifactId>external</artifactId>
+    <version>0.0.15-SNAPSHOT</version>
+  </parent>
+  <groupId>com.walterjwhite.java.modules.queue.modules.external</groupId>
+  <artifactId>providers</artifactId>
+  <packaging>pom</packaging>
+  <name>queue - providers - Parent POM</name>
+  <description>queue parent POM</description>
+  <modules>
+    <module>amazon-sqs</module>
+    <!-- Temporary problem with dependencies -->
+    <!--<module>google-cloud-pub-sub</module>-->
+    <module>local</module>
+    <!--<module>local-db</module>-->
+  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>com.walterjwhite.java.modules.queue.api</groupId>
+      <artifactId>service</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.walterjwhite.java.modules.queue</groupId>
+      <artifactId>impl</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.walterjwhite.java.modules.queue.modules.external</groupId>
+      <artifactId>api</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.walterjwhite.java.modules.queue.modules.external</groupId>
+      <artifactId>impl</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.walterjwhite.java.infrastructure.inject</groupId>
+      <artifactId>core</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
+    </dependency>
+    <!--<dependency>-->
+    <!--<groupId>com.walterjwhite.java.dependencies</groupId>-->
+    <!--<artifactId>commons-io</artifactId>-->
+    <!--<version>0.1-SNAPSHOT</version>-->
+    <!--<type>pom</type>-->
+    <!--</dependency>-->
+  </dependencies>
 </project>

@@ -1,0 +1,6 @@
+group = 'com.walterjwhite.modules.queue.modules.external.providers'
+description = 'queue - providers - local'
+dependencies {
+  compile project(':infrastructure:datastore:modules:watcher')
+  compile project(':infrastructure:dependencies:commons-io')
+}

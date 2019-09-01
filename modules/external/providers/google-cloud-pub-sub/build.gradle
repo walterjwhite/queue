@@ -1,0 +1,14 @@
+group = 'com.walterjwhite.modules.queue.modules.external.providers'
+description = 'queue - providers - google - cloud - pub/sub'
+dependencies {
+  compile project(':infrastructure:dependencies:google-cloud-pub-sub')
+  compile project(':infrastructure:datastore:modules:google')
+  compile project(':infrastructure:dependencies:commons-io')
+  compile project(':infrastructure:dependencies:h2')
+  compile project(':infrastructure:dependencies:postgresql')
+  compile project(':infrastructure:dependencies:p6spy')
+  compile project(':infrastructure:dependencies:hikari-jdbc-connection-pool')
+  compile project(':infrastructure:dependencies:hibernate-hikari')
+  testCompile project(':infrastructure:datastore:modules:property-test')
+  testCompile project(':infrastructure:datastore:modules:kryo')
+}

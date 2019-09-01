@@ -5,7 +5,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.walterjwhite.amazon.property.AmazonRegion;
-import com.walterjwhite.google.guice.property.property.Property;
+import com.walterjwhite.property.impl.annotation.Property;
 import javax.inject.Inject;
 import javax.inject.Provider;
 

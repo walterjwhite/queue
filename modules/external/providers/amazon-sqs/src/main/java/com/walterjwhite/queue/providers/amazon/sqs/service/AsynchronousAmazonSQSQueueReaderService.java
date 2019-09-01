@@ -5,22 +5,19 @@ import com.amazonaws.services.sqs.model.CreateQueueRequest;
 import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
 import com.google.common.util.concurrent.AbstractScheduledService;
-import com.walterjwhite.job.api.model.Queue;
-import com.walterjwhite.job.api.model.QueueMonitor;
 import com.walterjwhite.job.external.queue.api.ExternalQueueBridgeService;
+import com.walterjwhite.queue.api.model.Queue;
+import com.walterjwhite.queue.api.model.QueueMonitor;
+import com.walterjwhite.queue.impl.DefaultInputStreamProducer;
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /** Due to limitations with Amazon SQS, this is NOT truly async ... */
 public class AsynchronousAmazonSQSQueueReaderService extends AbstractScheduledService {
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(AsynchronousAmazonSQSQueueReaderService.class);
-
   protected final QueueMonitor queueMonitor;
   protected final AmazonSQS amazonSQS;
   protected final ExternalQueueBridgeService externalQueueBridgeService;
@@ -35,10 +32,6 @@ public class AsynchronousAmazonSQSQueueReaderService extends AbstractScheduledSe
     this.queueMonitor = queueMonitor;
     this.amazonSQS = amazonSQS;
 
-    for (String queueUrl : amazonSQS.listQueues().getQueueUrls()) {
-      LOGGER.info("queue url:" + queueUrl);
-    }
-
     createQueues();
   }
 
@@ -49,22 +42,23 @@ public class AsynchronousAmazonSQSQueueReaderService extends AbstractScheduledSe
     }
   }
 
-  protected void readQueue(Queue queue) {
-    LOGGER.info("checking queue:" + queue.getName());
+  protected void readQueue(Queue queue) throws Exception {
+    //    try {
+    for (final Message message :
+        amazonSQS
+            .receiveMessage(
+                new ReceiveMessageRequest(AmazonSQSUtils.getQueueUrl(amazonSQS, queue))
+                    .withMaxNumberOfMessages(10))
+            .getMessages()) {
 
-    try {
-      for (final Message message :
-          amazonSQS
-              .receiveMessage(
-                  new ReceiveMessageRequest(AmazonSQSUtils.getQueueUrl(amazonSQS, queue))
-                      .withMaxNumberOfMessages(10))
-              .getMessages()) {
-        LOGGER.info("read message:" + message.getBody());
-        externalQueueBridgeService.read(queue, Base64.decodeBase64(message.getBody()));
-      }
-    } catch (Exception e) {
-      LOGGER.error("error processing", e);
+      externalQueueBridgeService.read(
+          queue,
+          new DefaultInputStreamProducer(
+              new ByteArrayInputStream(Base64.decodeBase64(message.getBody()))));
     }
+    //    } catch (Exception e) {
+    //      LOGGER.error("error processing", e);
+    //    }
   }
 
   @Override
@@ -82,6 +76,11 @@ public class AsynchronousAmazonSQSQueueReaderService extends AbstractScheduledSe
     CreateQueueRequest createQueueRequest =
         new CreateQueueRequest().withQueueName(AmazonSQSUtils.getQueueName(queue));
 
+    handleFifo(queue, createQueueRequest);
+    amazonSQS.createQueue(createQueueRequest);
+  }
+
+  protected void handleFifo(Queue queue, CreateQueueRequest createQueueRequest) {
     if (AmazonSQSUtils.isFifo(queue)) {
       Map<String, String> attributes = new HashMap<>();
       attributes.put("FifoQueue", "true");
@@ -89,8 +88,5 @@ public class AsynchronousAmazonSQSQueueReaderService extends AbstractScheduledSe
 
       createQueueRequest.withAttributes(attributes);
     }
-
-    LOGGER.info("queue:" + createQueueRequest.getQueueName());
-    amazonSQS.createQueue(createQueueRequest);
   }
 }

@@ -1,7 +1,7 @@
 package com.walterjwhite.job.external.queue.api;
 
 import com.walterjwhite.datastore.api.model.entity.AbstractEntity;
-import com.walterjwhite.job.api.model.Queue;
+import com.walterjwhite.queue.api.model.Queue;
 
 public interface ExternalQueueService {
   /**

@@ -1,0 +1,7 @@
+group = 'com.walterjwhite.modules.queue.modules.external.providers'
+description = 'queue - providers - amazon-sqs'
+dependencies {
+  compile project(':infrastructure:dependencies:amazon-sqs')
+  compile project(':infrastructure:dependencies:commons-io')
+  compile project(':infrastructure:datastore:modules:amazon')
+}

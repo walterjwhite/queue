@@ -1,27 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>com.walterjwhite.modules</groupId>
-        <artifactId>queue</artifactId>
-        <version>0.0.15-SNAPSHOT</version>
-    </parent>
-
-    <groupId>com.walterjwhite.modules.queue</groupId>
-    <artifactId>api</artifactId>
-    <packaging>pom</packaging>
-
-    <name>queue - API - parent pom</name>
-
-    <modules>
-        <module>model</module>
-        <module>service</module>
-    </modules>
-
-    <dependencies>
-
-    </dependencies>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.walterjwhite.java.modules</groupId>
+    <artifactId>queue</artifactId>
+    <version>0.0.15-SNAPSHOT</version>
+  </parent>
+  <groupId>com.walterjwhite.java.modules.queue</groupId>
+  <artifactId>api</artifactId>
+  <packaging>pom</packaging>
+  <name>queue - API - parent pom</name>
+  <modules>
+    <module>model</module>
+    <module>service</module>
+    <!--<module>worker</module>-->
+  </modules>
+  <dependencies/>
 </project>

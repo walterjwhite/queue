@@ -1,2 +1,29 @@
-queue functionality
+Actions:
+1. #2, worker registration and identification
+2. #5, at time of queueing, record the worker that is running the AbstractQueued
+3. #6, periodic system job determines which jobs to run (may result in 2 nodes trying to work on the same resource)
+4. #7b, finish generic event abstraction
 
+Queue Design
+1. application starts
+-->2. worker registers itself (in JPA, this would be in the database)
+      a. may be many workers on a node
+      b. may be many workers in a cluster
+      c. single worker per JVM, many threads
+3. scheduler marks any incomplete QueuedJobs as aborted
+4. scheduler queues any QueuedJobs (registered with @Job)
+-->5. scheduler puts QueuedJobs into the local worker's queue AND marks it as such so we can easily identify where jobs are being run (recorded at root-level)
+
+-->6. WorkerSchedulerRunnable determines which jobs to pick-up that must have failed since the queue service defaults to local execution
+7. event module
+   a. entity is persisted
+-->b. entity, persist event is fired
+   c. any subscribers to that event result in a QueuedEvent job for each one
+   d. each QueuedEvent is sent to the local worker for processing
+   f. workers send out heartbeats as they execute
+   g. workers mark the job complete or exception if they fail
+   h. another worker attempts to pick up the failed job @see #6
+
+caveats:
+1. if we do a rolling restart, we cannot simply cancel jobs (QueuedJobs) that are incomplete because the jobs on the other node would still be in flight
+   instead, we need to check them against the timeout, perhaps

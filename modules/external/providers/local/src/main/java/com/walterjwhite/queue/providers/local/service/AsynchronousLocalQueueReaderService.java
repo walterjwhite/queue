@@ -1,26 +1,25 @@
 package com.walterjwhite.queue.providers.local.service;
 
-import com.google.common.util.concurrent.AbstractIdleService;
 import com.walterjwhite.file.modules.watcher.DirectoryWatcherService;
 import com.walterjwhite.file.modules.watcher.SimpleDirectoryWatcherService;
-import com.walterjwhite.job.api.enumeration.QueueType;
-import com.walterjwhite.job.api.model.Queue;
-import com.walterjwhite.job.api.model.QueueMonitor;
+import com.walterjwhite.infrastructure.inject.core.service.StartupAware;
+import com.walterjwhite.interruptable.Interruptable;
+import com.walterjwhite.interruptable.annotation.InterruptableService;
 import com.walterjwhite.job.external.queue.api.ExternalQueueBridgeService;
 import com.walterjwhite.job.external.queue.impl.file.FileInputStreamProducer;
+import com.walterjwhite.logging.annotation.HandlesException;
+import com.walterjwhite.queue.api.enumeration.QueueType;
+import com.walterjwhite.queue.api.model.Queue;
+import com.walterjwhite.queue.api.model.QueueMonitor;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /** Watches all configured queues */
-public class AsynchronousLocalQueueReaderService extends AbstractIdleService {
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(AsynchronousLocalQueueReaderService.class);
-
+@InterruptableService
+public class AsynchronousLocalQueueReaderService implements StartupAware, Interruptable {
   protected final QueueMonitor queueMonitor;
   protected final Set<DirectoryWatcherService> directoryWatcherServices = new HashSet<>();
   protected final ExternalQueueBridgeService externalQueueBridgeService;
@@ -58,20 +57,17 @@ public class AsynchronousLocalQueueReaderService extends AbstractIdleService {
         new DirectoryWatcherService.OnFileChangeListener() {
           @Override
           public void onFileCreate(String filePath) {
+            final File source =
+                LocalQueueUtil.getTargetFile(
+                    LocalQueueUtil.getTargetDirectory(queue, QueueStatus.New), filePath);
+            final File target =
+                LocalQueueUtil.getTargetFile(
+                    LocalQueueUtil.getTargetDirectory(queue, QueueStatus.Processed), filePath);
+
             try {
-              externalQueueBridgeService.readRaw(
-                  queue,
-                  new FileInputStreamProducer(
-                      new File(
-                          LocalQueueUtil.getTargetDirectory(queue, QueueStatus.New)
-                                  .getAbsolutePath()
-                              + File.separator
-                              + filePath),
-                      LocalQueueUtil.getTargetFile(
-                          LocalQueueUtil.getTargetDirectory(queue, QueueStatus.Processed),
-                          filePath)));
+              externalQueueBridgeService.read(queue, new FileInputStreamProducer(source, target));
             } catch (Exception e) {
-              LOGGER.error("error processing file", e);
+              handleException(e, source, queue, filePath);
             }
           }
         },
@@ -81,15 +77,25 @@ public class AsynchronousLocalQueueReaderService extends AbstractIdleService {
     return (directoryWatcherService);
   }
 
+  @HandlesException
+  protected void handleException(
+      Exception e, final File source, final Queue queue, final String filePath) {
+    final File target =
+        LocalQueueUtil.getTargetFile(
+            LocalQueueUtil.getTargetDirectory(queue, QueueStatus.Exception), filePath);
+
+    source.renameTo(target);
+  }
+
   @Override
-  protected void startUp() throws Exception {
+  public void onStartup() {
     for (DirectoryWatcherService directoryWatcherService : directoryWatcherServices)
       directoryWatcherService.start();
   }
 
   @Override
-  protected void shutDown() throws Exception {
-    for (DirectoryWatcherService directoryWatcherService : directoryWatcherServices)
-      directoryWatcherService.stop();
+  public void interrupt() {
+    directoryWatcherServices.stream()
+        .forEach(directoryWatcherService -> directoryWatcherService.stop());
   }
 }

@@ -1,11 +1,11 @@
 package com.walterjwhite.job.external.queue.api;
 
-import com.walterjwhite.job.api.model.Queue;
+import com.walterjwhite.queue.api.model.Queue;
 import com.walterjwhite.queue.api.producer.InputStreamProducer;
 
 public interface ExternalQueueBridgeService {
   /**
-   * Takes the given external job and queues it locally.
+   * Takes the given external queuedJob and queues it locally.
    *
    * @throws Exception
    */
