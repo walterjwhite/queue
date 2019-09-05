@@ -29,7 +29,12 @@ public class JobBuilder {
     this.heartbeatIntervalUnits = heartbeatIntervalUnits;
   }
 
-  /** This gets an instance of the SelfReschedulingJobCallable */
+  /**
+   * This gets an instance of the SelfReschedulingJobCallable
+   *
+   * @param queued the job to wrap in a runnable
+   * @return a runnable wrapping the job
+   */
   public AbstractRunnable prepareCallableJob(AbstractQueued queued) {
     AbstractRunnable runnable = getRunnable(queued);
     setup(runnable, queued);

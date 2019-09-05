@@ -114,8 +114,7 @@ public class DefaultJobWorkerService implements JobWorkerService, Interruptable 
    * To be invoked by the queue service directly for cancelling jobs. The queue service handles the
    * persistence operations.
    *
-   * @param queued
-   * @return
+   * @param queued the job to cancel
    */
   @Override
   public void cancel(AbstractQueued queued) {
@@ -135,7 +134,7 @@ public class DefaultJobWorkerService implements JobWorkerService, Interruptable 
    * To be invoked by the queue service directly for cancelling a specific job execution. The queue
    * service handles the persistence operations.
    *
-   * @param jobExecution
+   * @param jobExecution the job execution to cancel
    */
   @Override
   public void cancel(JobExecution jobExecution) {
@@ -155,7 +154,7 @@ public class DefaultJobWorkerService implements JobWorkerService, Interruptable 
   /**
    * To be invoked by the AbstractRunnable upon completion or failure.
    *
-   * @param runningFuture
+   * @param runningFuture the completed job to remove from the list of running jobs
    */
   public void remove(RunningFuture runningFuture) {
     runningFutures.remove(runningFuture);

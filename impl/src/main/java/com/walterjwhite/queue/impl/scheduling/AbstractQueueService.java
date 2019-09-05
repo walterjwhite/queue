@@ -59,12 +59,7 @@ public abstract class AbstractQueueService implements QueueService {
     return queued;
   }
 
-  /**
-   * Fetches the latest snapshot for this entity
-   *
-   * @param queued
-   * @return
-   */
+  // Fetches the latest snapshot for this entity
   protected abstract <QueuedType extends AbstractQueued> QueuedType refresh(QueuedType queued);
 
   protected abstract JobExecution refresh(JobExecution jobExecution);

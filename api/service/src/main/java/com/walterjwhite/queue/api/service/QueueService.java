@@ -21,8 +21,8 @@ public interface QueueService {
    * Cancel the specific job execution, but if the job has future executions, let those continue.
    * NOTE: this is an interactive call, why would this be automatically canceled?
    *
-   * @param jobExecution
-   * @return
+   * @param jobExecution the specific job execution to cancel
+   * @return the canceled job execution
    */
   JobExecution cancel(JobExecution jobExecution);
 
@@ -31,31 +31,30 @@ public interface QueueService {
    * 1. YES, to isolate jobs 2. NO, if we need to isolate jobs / work, shouldn't the work be in
    * separate databases?
    *
-   * @param queued
-   * @return
+   * @param queued the job to queue
+   * @return the queued job updated with schedule references
    */
   <QueuedType extends AbstractQueued> QueuedType queue(QueuedType queued);
 
   /**
    * Used by the runnable to check if it was cancelled while it was running.
    *
-   * @param queued
-   * @return
+   * @param queued the job to check if it was canceled
+   * @return whether the job was canceled
    */
   boolean wasCancelled(AbstractQueued queued);
 
   /**
    * Find any queued jobs that can be assigned out to a worker.
    *
-   * @return
+   * @return list of jobs that can be picked up.
    */
   <QueuedType extends AbstractQueued> List<QueuedType> findAssignable();
 
   /**
    * Find any queued jobs that are recurring and can be assigned out to a worker.
    *
-   * @param <QueuedType>
-   * @return
+   * @return list of recurring jobs that can be assigned
    */
   <QueuedType extends AbstractQueued> List<QueuedType> findRecurringAssignable();
 
@@ -64,7 +63,7 @@ public interface QueueService {
    * than the heartbeat interval. Additionally, look at jobs that ended in a failure status and are
    * retryable
    *
-   * @return
+   * @return list of aborted job executions that should be retried.
    */
   <QueuedType extends AbstractQueued> List<QueuedType> findAbortedJobExecutions();
 

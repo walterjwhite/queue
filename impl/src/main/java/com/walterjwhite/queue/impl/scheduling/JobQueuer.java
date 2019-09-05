@@ -30,8 +30,6 @@ public class JobQueuer implements StartupAware {
   /**
    * Any jobs that were in-flight at time of shutdown will be marked as cancelled and discovered
    * jobs will be recreated.
-   *
-   * @throws Exception
    */
   @Override
   public void onStartup() {

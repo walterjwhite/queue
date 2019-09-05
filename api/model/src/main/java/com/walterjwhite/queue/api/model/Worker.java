@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Data;
+import lombok.ToString;
 
 // TODO:
 // 1. support any number of workers
@@ -22,6 +23,7 @@ import lombok.Data;
 // will be removed from the cluster
 // @PersistenceCapable
 @Data
+@ToString(doNotUseGetters = true)
 @Entity
 public class Worker extends AbstractUUIDEntity {
   //    @ManyToOne

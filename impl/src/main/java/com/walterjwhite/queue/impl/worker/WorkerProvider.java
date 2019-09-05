@@ -24,8 +24,8 @@ public class WorkerProvider implements Provider<Worker> {
    * A worker is unique to the application identifier, each time we start the application, that will
    * change the application identifier so we can trace it to a running instance of the application.
    *
-   * @param worker
-   * @return
+   * @param worker the persisted worker
+   * @return the worker persisted to the datastore
    */
   protected Worker getWorker(Worker worker) {
     return repositoryProvider.get().create(worker);

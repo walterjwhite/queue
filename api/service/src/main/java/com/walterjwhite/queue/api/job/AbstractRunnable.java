@@ -72,8 +72,7 @@ public abstract class AbstractRunnable<QueuedType extends AbstractQueued>
    * value/units. that will handle interrupting the method just as any other method can be
    * interrupted.
    *
-   * @return
-   * @throws Exception
+   * @throws Exception if there is an exception during execution
    */
   @InterruptableTask
   @Heartbeat

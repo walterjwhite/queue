@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.walterjwhite.java.modules.queue.modules</groupId>
     <artifactId>external</artifactId>
-    <version>0.0.15-SNAPSHOT</version>
+    <version>0.0.17-SNAPSHOT</version>
   </parent>
   <groupId>com.walterjwhite.java.modules.queue.modules.external</groupId>
   <artifactId>providers</artifactId>
@@ -22,27 +22,27 @@
     <dependency>
       <groupId>com.walterjwhite.java.modules.queue.api</groupId>
       <artifactId>service</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.modules.queue</groupId>
       <artifactId>impl</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.modules.queue.modules.external</groupId>
       <artifactId>api</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.modules.queue.modules.external</groupId>
       <artifactId>impl</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.infrastructure.inject</groupId>
       <artifactId>core</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <!--<dependency>-->
     <!--<groupId>com.walterjwhite.java.dependencies</groupId>-->
