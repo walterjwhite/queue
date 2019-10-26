@@ -103,7 +103,7 @@ public class MessageWriterService implements StartupAware, Interruptable {
     try {
       // move the file to prevent it from being processed elsewhere
       final File processingFile = getTargetFilename(messageProcessingDirectory, source);
-      if (!source.renameTo(processingFile)) throw (new IOException("Error renaming file"));
+      if (!source.renameTo(processingFile)) throw new IOException("Error renaming file");
 
       final AbstractEntity message = null;
       //          messageHelperService.getMessage(FileUtils.readFileToByteArray(processingFile),
@@ -114,7 +114,7 @@ public class MessageWriterService implements StartupAware, Interruptable {
       // finally, move the file to the processed directory
       // use System.currentTimeMillis to avoid naming collisions
       if (!processingFile.renameTo(getTargetFilename(messageProcessedDirectory, processingFile)))
-        throw (new IOException("Error renaming file"));
+        throw new IOException("Error renaming file");
     } catch (Exception e) {
       handleQueueException(e);
     }

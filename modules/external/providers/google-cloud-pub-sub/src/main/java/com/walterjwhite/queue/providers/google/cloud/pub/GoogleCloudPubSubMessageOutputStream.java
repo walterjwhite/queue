@@ -54,6 +54,6 @@ public class GoogleCloudPubSubMessageOutputStream extends ByteArrayOutputStream 
   }
 
   protected void handleErrorPublishing(Exception e) {
-    throw (new RuntimeException("Error publishing message", e));
+    throw new RuntimeException("Error publishing message", e);
   }
 }

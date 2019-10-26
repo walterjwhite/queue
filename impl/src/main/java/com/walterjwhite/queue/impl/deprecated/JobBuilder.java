@@ -166,7 +166,7 @@
 //    @Override
 //    public QueuedJob queue(Queue queue, Class<? extends AbstractRunnable> callableClass) {
 //        return (queue(callableClass));
-//        //    throw (new UnsupportedOperationException("Not yet implemented."));
+//        //    throw new UnsupportedOperationException("Not yet implemented."));
 //    }
 //
 //    @Transactional
@@ -175,7 +175,7 @@
 //            Queue queue, Class<? extends AbstractRunnable> callableClass, AbstractEntity
 //            entityResource) {
 //        return (queue(callableClass, entityResource));
-//        //    throw (new UnsupportedOperationException("Not yet implemented."));
+//        //    throw new UnsupportedOperationException("Not yet implemented."));
 //    }
 //
 //    @Transactional
@@ -184,7 +184,7 @@
 // Serializable
 //            object) {
 //        return (queue(callableClass, object));
-//        //    throw (new UnsupportedOperationException("Not yet implemented."));
+//        //    throw new UnsupportedOperationException("Not yet implemented."));
 //    }
 //
 //    @Transactional
@@ -195,12 +195,12 @@
 //            AbstractEntity entityResource,
 //            AbstractSchedule... schedules) {
 //        return (queue(callableClass, entityResource, schedules));
-//        //    throw (new UnsupportedOperationException("Not yet implemented."));
+//        //    throw new UnsupportedOperationException("Not yet implemented."));
 //    }
 //
 //    @Transactional
 //    public QueuedJob build(Queue queue, AbstractEntity entityResource) {
 //        return (build(entityResource));
-//        //    throw (new UnsupportedOperationException("Not yet implemented."));
+//        //    throw new UnsupportedOperationException("Not yet implemented."));
 //    }
 // }

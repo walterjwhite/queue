@@ -34,7 +34,7 @@ public class DefaultMessageReceiver implements MessageReceiver {
           new DefaultInputStreamProducer(
               new ByteArrayInputStream(Base64.decodeBase64(message.getData().toByteArray()))));
     } catch (Exception e) {
-      throw (new RuntimeException("Error processing message", e));
+      throw new RuntimeException("Error processing message", e);
     }
 
     consumer.ack();

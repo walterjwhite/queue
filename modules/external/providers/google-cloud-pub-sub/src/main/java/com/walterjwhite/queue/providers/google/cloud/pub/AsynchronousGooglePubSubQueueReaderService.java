@@ -80,7 +80,7 @@ public class AsynchronousGooglePubSubQueueReaderService implements StartupAware,
   @Override
   public void onStartup() throws Exception {
     if (!subscribers.isEmpty()) {
-      throw (new IllegalStateException("Already initialized."));
+      throw new IllegalStateException("Already initialized.");
     }
 
     createQueues();

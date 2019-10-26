@@ -67,7 +67,7 @@ public enum ScheduleType {
       if (scheduleType.annotationClass.equals(annotationClass)) return scheduleType;
     }
 
-    throw (new IllegalStateException(annotationClass + " is not currently supported."));
+    throw new IllegalStateException(annotationClass + " is not currently supported.");
   }
 
   public abstract void queue(
